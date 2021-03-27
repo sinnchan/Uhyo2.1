@@ -1,13 +1,14 @@
-using UnityEditor;
+using UnityEngine;
 
 namespace Main.Presentation.View
 {
-    [InitializeOnLoad]
-    public class Main
+    
+    public class Main: MonoBehaviour
     {
-        static Main()
+        [RuntimeInitializeOnLoadMethod]
+        public static void Initialization()
         {
-            ScenePresenter.GetInstance().Init();
+            ScenePresenter.Init();
         }
     }
 }

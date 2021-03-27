@@ -6,37 +6,17 @@ using UnityEngine.SceneManagement;
 
 namespace Main.Presentation.View
 {
-    public sealed class ScenePresenter
+    public static class ScenePresenter
     {
-        private static ScenePresenter _instance = new ScenePresenter();
-        private readonly IObservable<Scenes> _sceneManagerStream;
+        private static IObservable<Scenes> _sceneStream;
 
-        private ScenePresenter()
+        public static void Init(IObservable<Scenes> sceneStream = null)
         {
-            var sceneManager = SceneController.GetInstance();
-            _sceneManagerStream = sceneManager.GetScenesStream();
-        }
-
-        /// <summary>
-        ///     テスト用コンストラクタ
-        /// </summary>
-        /// <param name="sceneController"></param>
-        public ScenePresenter(SceneController sceneController)
-        {
-            _sceneManagerStream = sceneController.GetScenesStream();
-        }
-
-        public static ScenePresenter GetInstance()
-        {
-            return _instance;
-        }
-
-        public void Init()
-        {
-            _sceneManagerStream.Subscribe(
+            _sceneStream = sceneStream ?? SceneController.GetInstance().GetScenesStream();
+            _sceneStream.Subscribe(
                 scenes =>
                 {
-                    Debug.Log(this + " showScene: " + scenes);
+                    Debug.Log(" showScene: " + scenes);
                     switch (scenes)
                     {
                         case Scenes.HomeMenu:

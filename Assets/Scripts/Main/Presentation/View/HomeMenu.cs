@@ -9,16 +9,19 @@ namespace Main.Presentation.View
 
         public void OnClickPlayButton()
         {
+            Debug.Log("OnClickPlayButton");
             _vm.OnClickPlayButton();
         }
 
         public void OnClick2PlayerButton()
         {
+            Debug.Log("OnClick2PlayerButton");
             _vm.OnClick2PlayerButton();
         }
 
         public void OnClickOnlinePlayButton()
         {
+            Debug.Log("OnClickOnlinePlayButton");
             _vm.OnClickOnlinePlayButton();
         }
     }
