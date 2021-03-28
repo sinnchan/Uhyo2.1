@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Main.Presentation.View
 {
-    public class HomeMenu : MonoBehaviour
+    public class MainMenu : MonoBehaviour
     {
         private readonly HomeMenuVm _vm = new HomeMenuVm();
 
