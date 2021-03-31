@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Main.Util;
 
 namespace Main.Domain.Entities.Game
 {
@@ -162,8 +163,8 @@ namespace Main.Domain.Entities.Game
             while (true)
             {
                 var result = pointer.MoveTo(direction, 1);
-                if (!result.valid) return new List<BoardPosition>();
-                pointer = result.data;
+                if (!result.Valid) return new List<BoardPosition>();
+                pointer = result.Data;
                 var pointerState = _board.GetPiece(pointer).State;
                 if (pointerState == PieceState.Space) return new List<BoardPosition>();
                 if (pointerState == turn) break;
@@ -185,8 +186,8 @@ namespace Main.Domain.Entities.Game
             (
                 from Direction direction in Enum.GetValues(typeof(Direction))
                 let targetPointer = position.MoveTo(direction, 1)
-                where targetPointer.valid
-                let pointerPieceState = _board.GetPiece(targetPointer.data).State
+                where targetPointer.Valid
+                let pointerPieceState = _board.GetPiece(targetPointer.Data).State
                 where pointerPieceState.IsOppositeTo(turn)
                 select direction
             ).ToList();

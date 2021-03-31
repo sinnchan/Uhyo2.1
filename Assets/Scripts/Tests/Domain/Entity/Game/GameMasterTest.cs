@@ -34,9 +34,9 @@ namespace Tests.Domain.Entity.Game
             var placeResult = gameMaster.Place(piece, placePosition);
             var actual = gameMaster.GetBoardData();
 
-            Assert.True(placeResult.valid);
-            Assert.AreEqual(expectedPositions.Count, placeResult.data.Count);
-            foreach (var boardPosition in placeResult.data)
+            Assert.True(placeResult.Valid);
+            Assert.AreEqual(expectedPositions.Count, placeResult.Data.Count);
+            foreach (var boardPosition in placeResult.Data)
                 Assert.True(expectedPositions.Exists(position => position.IsEqualTo(boardPosition)));
 
             Assert.AreEqual(expectedBoard.VisualizeData(), actual.VisualizeData());
@@ -53,12 +53,12 @@ namespace Tests.Domain.Entity.Game
             var placeResult = gameMaster.Place(piece, placePosition);
             var actual = gameMaster.GetBoardData();
 
-            Assert.False(placeResult.valid);
-            Assert.Null(placeResult.data);
+            Assert.False(placeResult.Valid);
+            Assert.Null(placeResult.Data);
             Assert.AreEqual(testBoard.VisualizeData(), actual.VisualizeData());
         }
 
-        
+
         /// <summary>
         ///     最短全白テスト
         /// </summary>
@@ -69,7 +69,7 @@ namespace Tests.Domain.Entity.Game
             foreach (var progress in gameProgressList)
             {
                 var result = gameMaster.Place(progress.piece, progress.position);
-                Assert.True(result.valid, progress.ToString());
+                Assert.True(result.Valid, progress.ToString());
                 if (progress != gameProgressList.Last())
                     Assert.False(gameMaster.GameEndFlag);
                 else

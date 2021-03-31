@@ -1,4 +1,3 @@
-
 using Main.Domain.Entities.Game;
 
 namespace Tests.Util

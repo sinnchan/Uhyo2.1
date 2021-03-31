@@ -6,7 +6,7 @@ namespace Main.Presentation
 {
     public sealed class SceneController
     {
-        private static SceneController _sceneController = new SceneController();
+        private static readonly SceneController Instance = new SceneController();
 
         private readonly Subject<Scenes> _sceneStream = new Subject<Scenes>();
 
@@ -17,7 +17,7 @@ namespace Main.Presentation
 
         public static SceneController GetInstance()
         {
-            return _sceneController;
+            return Instance;
         }
 
         public IObservable<Scenes> GetScenesStream()
@@ -56,6 +56,12 @@ namespace Main.Presentation
         public void ShowMatching()
         {
             _sceneStream.OnNext(Scenes.OnlineMatching);
+        }
+
+        public void Back()
+        {
+            // TODO back stack 
+            _sceneStream.OnNext(Scenes.HomeMenu);
         }
     }
 }

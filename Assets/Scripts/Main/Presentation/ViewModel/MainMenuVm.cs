@@ -2,7 +2,7 @@ using Main.Domain.Entities;
 
 namespace Main.Presentation.ViewModel
 {
-    public class HomeMenuVm
+    public class MainMenuVm
     {
         private readonly SceneController _sceneController = SceneController.GetInstance();
 

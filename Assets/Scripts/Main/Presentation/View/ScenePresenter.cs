@@ -1,7 +1,7 @@
 using System;
 using Main.Domain.Entities;
+using Main.Util;
 using UniRx;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Main.Presentation.View
@@ -16,7 +16,7 @@ namespace Main.Presentation.View
             _sceneStream.Subscribe(
                 scenes =>
                 {
-                    Debug.Log(" showScene: " + scenes);
+                    Log.Info(typeof(ScenePresenter).FullName, "showScene: " + scenes);
                     switch (scenes)
                     {
                         case Scenes.HomeMenu:
