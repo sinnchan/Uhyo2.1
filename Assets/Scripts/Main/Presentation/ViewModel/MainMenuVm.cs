@@ -4,7 +4,7 @@ namespace Main.Presentation.ViewModel
 {
     public class MainMenuVm
     {
-        private readonly SceneController _sceneController = SceneController.GetInstance();
+        private readonly SceneController _sceneController = SceneController.Instance;
 
         public void OnClickPlayButton()
         {

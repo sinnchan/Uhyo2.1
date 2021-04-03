@@ -12,7 +12,7 @@ namespace Main.Presentation.View
 
         public static void Init(IObservable<Scenes> sceneStream = null)
         {
-            _sceneStream = sceneStream ?? SceneController.GetInstance().GetScenesStream();
+            _sceneStream = sceneStream ?? SceneController.Instance.GetScenesStream();
             _sceneStream.Subscribe(
                 scenes =>
                 {

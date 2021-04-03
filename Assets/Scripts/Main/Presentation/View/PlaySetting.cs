@@ -20,10 +20,10 @@ namespace Main.Presentation.View
             switch (turnNum)
             {
                 case 1:
-                    _vm.SelectTurn(Turn.Black);
+                    _vm.OnSelectTurn(Turn.Black);
                     break;
                 case 2:
-                    _vm.SelectTurn(Turn.White);
+                    _vm.OnSelectTurn(Turn.White);
                     break;
                 default:
                     Log.Warning(GetType().FullName,$"Invalid setting value -> {nameof(turnNum)}:{turnNum}");
@@ -39,14 +39,14 @@ namespace Main.Presentation.View
         {
             Log.Info(GetType().FullName,$"{nameof(SelectCpuStrength)} -> {cpuStrength}");
             if (1 <= cpuStrength && cpuStrength <= 5)
-                _vm.SelectCpuStrength(cpuStrength);
+                _vm.OnSelectCpuStrength(cpuStrength);
             else
                 Log.Warning(GetType().FullName,$"Invalid setting value -> {nameof(SelectCpuStrength)}:{cpuStrength}");
         }
 
         public void OnClickStartButton()
         {
-            _vm.OnClickStartButton();
+            _vm.OnGameStart();
         }
     }
 }

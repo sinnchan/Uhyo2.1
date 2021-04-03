@@ -1,27 +1,31 @@
 ﻿using Main.Domain.Entities;
+using Main.Domain.UseCase;
 
 namespace Main.Presentation.ViewModel
 {
     public class PlaySettingVm
     {
-        private readonly SceneController _sceneController = SceneController.GetInstance();
+        private readonly SceneController _sceneController = SceneController.Instance;
+        private readonly GameSettingUseCase _gameSettingUseCase = new GameSettingUseCase();
 
-        public void SelectTurn(Turn turn)
+        public void OnSelectTurn(Turn turn)
         {
-            // TODO usecase
+            _gameSettingUseCase.SaveTurn(turn);
+            _gameSettingUseCase.SetTurn(turn);
         }
 
-        public void SelectCpuStrength(int strength)
+        public void OnSelectCpuStrength(int strength)
         {
-            // TODO usecase
+            _gameSettingUseCase.SaveCpuStr(strength);
+            _gameSettingUseCase.SetCpuStr(strength);
         }
 
-        public void OnClickStartButton()
+        public void OnGameStart()
         {
-            // TODO usecase
+            _sceneController.ShowPlayScene(PlayMode.Solo);
         }
 
-        public void OnClickBackButton()
+        public void OnBack()
         {
             _sceneController.Back();
         }

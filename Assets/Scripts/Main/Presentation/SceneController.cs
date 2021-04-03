@@ -6,18 +6,13 @@ namespace Main.Presentation
 {
     public sealed class SceneController
     {
-        private static readonly SceneController Instance = new SceneController();
+        public static readonly SceneController Instance = new SceneController();
 
         private readonly Subject<Scenes> _sceneStream = new Subject<Scenes>();
 
         // singleton
         private SceneController()
         {
-        }
-
-        public static SceneController GetInstance()
-        {
-            return Instance;
         }
 
         public IObservable<Scenes> GetScenesStream()
