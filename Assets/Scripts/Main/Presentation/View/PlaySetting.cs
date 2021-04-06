@@ -48,5 +48,10 @@ namespace Main.Presentation.View
         {
             _vm.OnGameStart();
         }
+
+        public void OnClickBackButton()
+        {
+            _vm.OnBack();
+        }
     }
 }

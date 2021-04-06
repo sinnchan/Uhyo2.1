@@ -1,40 +1,41 @@
 using System;
-using Main.Domain.Entities;
-using Main.Util;
 using UniRx;
 using UnityEngine.SceneManagement;
+using Scene = Main.Domain.Entities.Scene;
 
 namespace Main.Presentation.View
 {
     public static class ScenePresenter
     {
-        private static IObservable<Scenes> _sceneStream;
+        private static IObservable<Scene> _sceneStream;
 
-        public static void Init(IObservable<Scenes> sceneStream = null)
+        public static void Init(IObservable<Scene> sceneStream = null)
         {
             _sceneStream = sceneStream ?? SceneController.Instance.GetScenesStream();
             _sceneStream.Subscribe(
                 scenes =>
                 {
-                    Log.Info(typeof(ScenePresenter).FullName, "showScene: " + scenes);
                     switch (scenes)
                     {
-                        case Scenes.HomeMenu:
+                        case Scene.MainMenu:
+                            SceneManager.LoadScene("MainMenu");
                             break;
-                        case Scenes.MainMenuSetting:
+                        case Scene.MainMenuSetting:
                             break;
-                        case Scenes.OfflinePlaySetting:
+                        case Scene.OfflinePlaySetting:
                             SceneManager.LoadScene("PlaySetting");
                             break;
-                        case Scenes.OfflinePlay:
+                        case Scene.CpuPlayGameView:
                             break;
-                        case Scenes.PlayFinish:
+                        case Scene.TwoPlayerGameView:
                             break;
-                        case Scenes.OnlineMatching:
+                        case Scene.OnlinePlayGameView:
                             break;
-                        case Scenes.OnlinePlayView:
+                        case Scene.PlayFinish:
                             break;
-                        case Scenes.OnlineFinish:
+                        case Scene.OnlineMatching:
+                            break;
+                        case Scene.OnlineFinish:
                             break;
                         default:
                             throw new ArgumentOutOfRangeException(nameof(scenes), scenes, null);

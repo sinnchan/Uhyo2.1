@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using Main.Domain.Entities;
+using Main.Util;
 using UniRx;
 
 namespace Main.Presentation
@@ -8,55 +10,53 @@ namespace Main.Presentation
     {
         public static readonly SceneController Instance = new SceneController();
 
-        private readonly Subject<Scenes> _sceneStream = new Subject<Scenes>();
+        private readonly Subject<Scene> _sceneStream = new Subject<Scene>();
+
+        private Scene _currentScene = Scene.MainMenu; // 初期値
+        
+        private readonly Stack<Scene> _backStack = new Stack<Scene>();
 
         // singleton
         private SceneController()
         {
         }
 
-        public IObservable<Scenes> GetScenesStream()
+        /// <summary>
+        /// Debug時、開始時のシーンをセットしないと動かんよ
+        /// </summary>
+        /// <param name="scene"></param>
+        public void Init(Scene scene)
+        {
+            _currentScene = scene;
+        }
+
+        public IObservable<Scene> GetScenesStream()
         {
             return _sceneStream;
         }
 
-        public void ShowHomeMenu()
+        public void Show(Scene scene, bool backStack = true)
         {
-            _sceneStream.OnNext(Scenes.HomeMenu);
-        }
+            _sceneStream.OnNext(scene);
+            Log.Info(GetType().FullName, $"Show -> {scene}");
 
-        public void ShowPlaySetting()
-        {
-            _sceneStream.OnNext(Scenes.OfflinePlaySetting);
-        }
+            if (backStack)
+                _backStack.Push(_currentScene);
 
-        public void ShowPlayScene(PlayMode mode)
-        {
-            switch (mode)
-            {
-                case PlayMode.Solo:
-                    _sceneStream.OnNext(Scenes.OfflinePlay);
-                    break;
-                case PlayMode.TwoPlayer:
-                    _sceneStream.OnNext(Scenes.OfflinePlay);
-                    break;
-                case PlayMode.Online:
-                    _sceneStream.OnNext(Scenes.OnlinePlayView);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
-            }
-        }
-
-        public void ShowMatching()
-        {
-            _sceneStream.OnNext(Scenes.OnlineMatching);
+            _currentScene = scene;
         }
 
         public void Back()
         {
-            // TODO back stack 
-            _sceneStream.OnNext(Scenes.HomeMenu);
+            if (_backStack.Count != 0)
+            {
+                var targetScene = _backStack.Pop();
+                _sceneStream.OnNext(targetScene);
+                _currentScene = targetScene;
+                Log.Info(GetType().FullName, $"Pop BackStack -> {targetScene}");
+            }
+            else
+                Log.Info(GetType().FullName, "BackStack is Empty!!");
         }
     }
 }

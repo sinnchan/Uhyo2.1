@@ -22,7 +22,7 @@ namespace Main.Presentation.ViewModel
 
         public void OnGameStart()
         {
-            _sceneController.ShowPlayScene(PlayMode.Solo);
+            _sceneController.Show(Scene.CpuPlayGameView);
         }
 
         public void OnBack()

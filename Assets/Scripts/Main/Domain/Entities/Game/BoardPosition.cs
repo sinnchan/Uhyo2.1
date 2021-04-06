@@ -14,9 +14,9 @@ namespace Main.Domain.Entities.Game
 
         public BoardPosition(int x, int y) : base(TrimArg(x), TrimArg(y))
         {
-            if (CheckArg(x))
+            if (!CheckArg(x))
                 Log.Warning(GetType().FullName ,$"x is out of range. -> {x}");
-            if (CheckArg(y))
+            if (!CheckArg(y))
                 Log.Warning(GetType().FullName ,$"y is out of range. -> {y}");
         }
 

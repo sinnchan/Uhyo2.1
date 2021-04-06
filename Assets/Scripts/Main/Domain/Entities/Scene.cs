@@ -1,14 +1,15 @@
 namespace Main.Domain.Entities
 {
-    public enum Scenes
+    public enum Scene
     {
-        HomeMenu,
+        MainMenu,
         MainMenuSetting,
         OfflinePlaySetting,
-        OfflinePlay,
+        CpuPlayGameView,
+        TwoPlayerGameView,
+        OnlinePlayGameView,
         PlayFinish,
         OnlineMatching,
-        OnlinePlayView,
         OnlineFinish
     }
 }

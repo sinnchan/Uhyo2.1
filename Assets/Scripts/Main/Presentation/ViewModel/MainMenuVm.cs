@@ -8,17 +8,17 @@ namespace Main.Presentation.ViewModel
 
         public void OnClickPlayButton()
         {
-            _sceneController.ShowPlaySetting();
+            _sceneController.Show(Scene.OfflinePlaySetting);
         }
 
         public void OnClick2PlayerButton()
         {
-            _sceneController.ShowPlayScene(PlayMode.TwoPlayer);
+            _sceneController.Show(Scene.TwoPlayerGameView);
         }
 
         public void OnClickOnlinePlayButton()
         {
-            _sceneController.ShowMatching();
+            _sceneController.Show(Scene.OnlineMatching);
         }
     }
 }
