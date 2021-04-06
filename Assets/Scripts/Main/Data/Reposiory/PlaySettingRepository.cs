@@ -4,19 +4,19 @@ using Main.Util;
 
 namespace Main.Data.Reposiory
 {
-    public sealed class PlaySettingRepository: IPlaySettingRepository
+    public sealed class PlaySettingRepository : IPlaySettingRepository
     {
         public static readonly PlaySettingRepository Instance = new PlaySettingRepository();
+        private static readonly object LockTurn = new object();
+        private static readonly object LockCpuStr = new object();
+
+        // todo ↓こいつら永続化する
+        private int _cpuStr = 1;
+        private Turn _turn = Turn.Black;
 
         private PlaySettingRepository()
         {
         }
-
-        // todo ↓こいつら永続化する
-        private Turn _turn = Turn.Black;
-        private int _cpuStr = 1;
-        private static readonly object LockTurn = new object();
-        private static readonly object LockCpuStr = new object();
 
         public void SaveTurn(Turn turn)
         {

@@ -26,7 +26,7 @@ namespace Main.Presentation.View
                     _vm.OnSelectTurn(Turn.White);
                     break;
                 default:
-                    Log.Warning(GetType().FullName,$"Invalid setting value -> {nameof(turnNum)}:{turnNum}");
+                    Log.Warning(GetType().FullName, $"Invalid setting value -> {nameof(turnNum)}:{turnNum}");
                     break;
             }
         }
@@ -37,11 +37,11 @@ namespace Main.Presentation.View
         /// <param name="cpuStrength"></param>
         public void SelectCpuStrength(int cpuStrength)
         {
-            Log.Info(GetType().FullName,$"{nameof(SelectCpuStrength)} -> {cpuStrength}");
+            Log.Info(GetType().FullName, $"{nameof(SelectCpuStrength)} -> {cpuStrength}");
             if (1 <= cpuStrength && cpuStrength <= 5)
                 _vm.OnSelectCpuStrength(cpuStrength);
             else
-                Log.Warning(GetType().FullName,$"Invalid setting value -> {nameof(SelectCpuStrength)}:{cpuStrength}");
+                Log.Warning(GetType().FullName, $"Invalid setting value -> {nameof(SelectCpuStrength)}:{cpuStrength}");
         }
 
         public void OnClickStartButton()

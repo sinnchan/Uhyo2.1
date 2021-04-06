@@ -15,9 +15,9 @@ namespace Main.Domain.Entities.Game
         public BoardPosition(int x, int y) : base(TrimArg(x), TrimArg(y))
         {
             if (!CheckArg(x))
-                Log.Warning(GetType().FullName ,$"x is out of range. -> {x}");
+                Log.Warning(GetType().FullName, $"x is out of range. -> {x}");
             if (!CheckArg(y))
-                Log.Warning(GetType().FullName ,$"y is out of range. -> {y}");
+                Log.Warning(GetType().FullName, $"y is out of range. -> {y}");
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Main.Domain.Entities.Game
             if (CheckArg(x) && CheckArg(y))
                 return new Result<BoardPosition>(new BoardPosition(x, y), true);
 
-            Log.Info(GetType().FullName,"Failed to move to the specified position.");
+            Log.Info(GetType().FullName, "Failed to move to the specified position.");
             return new Result<BoardPosition>(this, false);
         }
     }

@@ -7,7 +7,7 @@ namespace Main.Util
     /// </summary>
     public static class Log
     {
-        private static ILogger _logger = Debug.unityLogger;
+        private static readonly ILogger _logger = Debug.unityLogger;
 
         public static void Info(string tag, object message)
         {

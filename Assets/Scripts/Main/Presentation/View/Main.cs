@@ -6,7 +6,7 @@ using Scene = Main.Domain.Entities.Scene;
 namespace Main.Presentation.View
 {
     /// <summary>
-    /// Unity起動時に色々初期化する用クラス
+    ///     Unity起動時に色々初期化する用クラス
     /// </summary>
     public class Main : MonoBehaviour
     {

@@ -10,11 +10,11 @@ namespace Main.Presentation
     {
         public static readonly SceneController Instance = new SceneController();
 
+        private readonly Stack<Scene> _backStack = new Stack<Scene>();
+
         private readonly Subject<Scene> _sceneStream = new Subject<Scene>();
 
         private Scene _currentScene = Scene.MainMenu; // 初期値
-        
-        private readonly Stack<Scene> _backStack = new Stack<Scene>();
 
         // singleton
         private SceneController()
@@ -22,7 +22,7 @@ namespace Main.Presentation
         }
 
         /// <summary>
-        /// Debug時、開始時のシーンをセットしないと動かんよ
+        ///     Debug時、開始時のシーンをセットしないと動かんよ
         /// </summary>
         /// <param name="scene"></param>
         public void Init(Scene scene)
@@ -56,7 +56,9 @@ namespace Main.Presentation
                 Log.Info(GetType().FullName, $"Pop BackStack -> {targetScene}");
             }
             else
+            {
                 Log.Info(GetType().FullName, "BackStack is Empty!!");
+            }
         }
     }
 }

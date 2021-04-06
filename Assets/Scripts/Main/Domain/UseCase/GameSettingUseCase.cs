@@ -11,9 +11,9 @@ namespace Main.Domain.UseCase
         void SaveCpuStr(int strength);
         int LoadCpuStr();
     }
-    
+
     /// <summary>
-    /// すべて別スレッドで実行されます
+    ///     すべて別スレッドで実行されます
     /// </summary>
     public class GameSettingUseCase
     {
@@ -25,7 +25,7 @@ namespace Main.Domain.UseCase
         }
 
         /// <summary>
-        /// 選択したターンを保存します。
+        ///     選択したターンを保存します。
         /// </summary>
         /// <param name="turn"></param>
         public void SaveTurn(Turn turn)

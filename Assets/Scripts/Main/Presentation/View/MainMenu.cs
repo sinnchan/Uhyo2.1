@@ -10,19 +10,19 @@ namespace Main.Presentation.View
 
         public void OnClickPlayButton()
         {
-            Log.Info(GetType().FullName,nameof(OnClickPlayButton));
+            Log.Info(GetType().FullName, nameof(OnClickPlayButton));
             _vm.OnClickPlayButton();
         }
 
         public void OnClick2PlayerButton()
         {
-            Log.Info(GetType().FullName,nameof(OnClick2PlayerButton));
+            Log.Info(GetType().FullName, nameof(OnClick2PlayerButton));
             _vm.OnClick2PlayerButton();
         }
 
         public void OnClickOnlinePlayButton()
         {
-            Log.Info(GetType().FullName,nameof(OnClickOnlinePlayButton));
+            Log.Info(GetType().FullName, nameof(OnClickOnlinePlayButton));
             _vm.OnClickOnlinePlayButton();
         }
     }

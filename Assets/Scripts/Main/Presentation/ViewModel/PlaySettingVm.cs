@@ -5,8 +5,8 @@ namespace Main.Presentation.ViewModel
 {
     public class PlaySettingVm
     {
-        private readonly SceneController _sceneController = SceneController.Instance;
         private readonly GameSettingUseCase _gameSettingUseCase = new GameSettingUseCase();
+        private readonly SceneController _sceneController = SceneController.Instance;
 
         public void OnSelectTurn(Turn turn)
         {
