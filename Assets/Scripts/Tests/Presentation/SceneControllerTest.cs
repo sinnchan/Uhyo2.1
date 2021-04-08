@@ -8,35 +8,24 @@ namespace Tests.Presentation
 {
     public class SceneControllerTest
     {
-        [TestCase(Scene.MainMenu)]
-        public void ShowTest(Scene scene)
+        [SetUp]
+        public void SetUp()
         {
             var controller = SceneController.Instance;
-            controller.GetScenesStream().Subscribe(
-                scenes => { Assert.AreEqual(scene, scenes); }
-            );
-            controller.Show(scene);
+            controller.ResetBackStack();
+            controller.Init(Scene.MainMenu);
         }
 
         [Test]
         public void BackTest()
         {
             var controller = SceneController.Instance;
-            var index = 0;
+            var actualBackStack = new List<Scene> {Scene.OfflinePlaySetting, Scene.MainMenu};
 
-            var actual = new List<Scene>();
-            actual.Add(Scene.MainMenu);
-            actual.Add(Scene.OfflinePlaySetting);
-            actual.Add(Scene.CpuPlayGameView);
-            actual.Add(Scene.OfflinePlaySetting);
-            actual.Add(Scene.MainMenu);
+            controller.Show(Scene.OfflinePlaySetting);
+            controller.Show(Scene.CpuPlayGameView);
 
-            controller.GetScenesStream().Subscribe(
-                scenes =>
-                {
-                    Assert.AreEqual(scenes, actual[index]);
-                    index++;
-                });
+            Assert.That(controller.GetBackStackList(), Is.EqualTo(actualBackStack));
         }
     }
 }

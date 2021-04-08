@@ -30,6 +30,16 @@ namespace Main.Presentation
             _currentScene = scene;
         }
 
+        public void ResetBackStack()
+        {
+            _backStack.Clear();
+        }
+
+        public IList<Scene> GetBackStackList()
+        {
+            return _backStack.ToArray();
+        }
+
         public IObservable<Scene> GetScenesStream()
         {
             return _sceneStream;
@@ -37,23 +47,21 @@ namespace Main.Presentation
 
         public void Show(Scene scene, bool backStack = true)
         {
-            _sceneStream.OnNext(scene);
-            Log.Info(GetType().FullName, $"Show -> {scene}");
-
             if (backStack)
                 _backStack.Push(_currentScene);
 
             _currentScene = scene;
+            _sceneStream.OnNext(_currentScene);
+            Log.Info(GetType().FullName, $"Show -> {_currentScene}");
         }
 
         public void Back()
         {
             if (_backStack.Count != 0)
             {
-                var targetScene = _backStack.Pop();
-                _sceneStream.OnNext(targetScene);
-                _currentScene = targetScene;
-                Log.Info(GetType().FullName, $"Pop BackStack -> {targetScene}");
+                _currentScene = _backStack.Pop();
+                _sceneStream.OnNext(_currentScene);
+                Log.Info(GetType().FullName, $"Pop BackStack -> {_currentScene}");
             }
             else
             {
