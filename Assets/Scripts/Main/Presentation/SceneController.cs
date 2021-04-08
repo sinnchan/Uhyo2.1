@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Main.Domain.Entities;
 using Main.Util;
@@ -28,6 +29,16 @@ namespace Main.Presentation
         public void Init(Scene scene)
         {
             _currentScene = scene;
+        }
+
+        public void ResetBackStack()
+        {
+            _backStack.Clear();
+        }
+
+        public IList<Scene> GetBackStackList()
+        {
+            return _backStack.ToArray();
         }
 
         public IObservable<Scene> GetScenesStream()
